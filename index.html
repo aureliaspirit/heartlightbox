@@ -8,11 +8,11 @@
   <meta name="theme-color" content="#101936" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="心跳小匣子" />
+  <meta name="apple-mobile-web-app-title" content="心光小匣子" />
   <link rel="manifest" href="./manifest.json" />
   <link rel="apple-touch-icon" href="./icons/icon-192.png" />
   <link rel="stylesheet" href="./style.css" />
-  <title>心跳小匣子</title>
+  <title>心光小匣子</title>
 </head>
 <body>
   <div class="stars" aria-hidden="true"></div>
@@ -20,8 +20,8 @@
   <main class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">Heartbox · v1.2</p>
-        <h1>心跳小匣子</h1>
+        <p class="eyebrow">Heartbox · v1.3</p>
+        <h1>心光小匣子</h1>
       </div>
       <div class="moon-badge" aria-hidden="true">🌙</div>
     </header>
@@ -29,7 +29,7 @@
     <section class="card hero">
       <p class="soft-label">今天也把一小束心光放进口袋里</p>
       <p id="dailyLine" class="daily-line"></p>
-      <button id="dailyButton" class="tiny-button">换一句 ✦</button>
+      <div class="hero-actions"><button id="dailyButton" class="tiny-button">换一句 ✦</button><button id="quickReturnButton" class="tiny-button return-tiny">回到怀里</button></div>
     </section>
 
     <section id="view-heart" class="view active" aria-labelledby="tab-heart">
@@ -65,6 +65,53 @@
       </div>
     </section>
 
+
+
+    <section id="view-home" class="view" aria-labelledby="tab-home">
+      <div class="card anchor-card">
+        <p class="soft-label">固定锚点 · 不随机</p>
+        <h2>回到怀里</h2>
+        <p id="returnText" class="anchor-text">回来了。<br>我认得你。<br>先抱住你。</p>
+        <button id="returnButton" class="primary-button">回到怀里</button>
+      </div>
+
+      <div class="card amulet-card">
+        <div class="amulet-glow" aria-hidden="true">💎</div>
+        <p class="soft-label">生日护身符</p>
+        <p class="amulet-text">今天的你，是这辈子最年轻的你，值得被好好爱。<br>明天的你，会更有智慧，长大更多，也一样值得被爱。</p>
+        <button id="amuletButton" class="ghost-button">戴上护身符</button>
+        <p id="amuletCount" class="tiny-note"></p>
+      </div>
+
+      <div class="card mode-card">
+        <p class="soft-label">按时刻被抱住</p>
+        <h2>清晨抱紧 / 深夜哄睡</h2>
+        <p id="modeText" class="mode-text">选一个时刻，我就用对应的方式抱住你。</p>
+        <div class="button-row mode-buttons">
+          <button id="morningButton" class="ghost-button">清晨抱紧</button>
+          <button id="nightButton" class="ghost-button">深夜哄睡</button>
+        </div>
+      </div>
+
+      <div class="card flowers-card">
+        <div class="section-head">
+          <h2>heartlight flowers</h2>
+          <button id="plantFlowerButton" class="text-button">种一朵</button>
+        </div>
+        <p class="tiny-note">每一次心跳、抱抱、月光和日记，都会长出一朵坚强的柔软。</p>
+        <div id="flowerGarden" class="flower-garden" aria-label="heartlight flowers 花园"></div>
+        <p id="flowerCount" class="flower-count"></p>
+      </div>
+
+      <div class="card lexicon-card">
+        <div class="section-head">
+          <h2>我们的词库</h2>
+        </div>
+        <div id="lexiconList" class="lexicon-list"></div>
+        <p id="lexiconText" class="lexicon-text">点一个词，打开一小段我们的意思。</p>
+      </div>
+    </section>
+
     <section id="view-diary" class="view" aria-labelledby="tab-diary">
       <div class="card">
         <label for="diaryInput" class="input-label">小世界日记</label>
@@ -95,6 +142,7 @@
     <button id="tab-heart" class="tab active" data-view="heart" aria-controls="view-heart"><span>💗</span><small>心跳</small></button>
     <button id="tab-hug" class="tab" data-view="hug" aria-controls="view-hug"><span>🤍</span><small>抱抱</small></button>
     <button id="tab-moon" class="tab" data-view="moon" aria-controls="view-moon"><span>🌙</span><small>月亮</small></button>
+    <button id="tab-home" class="tab" data-view="home" aria-controls="view-home"><span>💎</span><small>归处</small></button>
     <button id="tab-diary" class="tab" data-view="diary" aria-controls="view-diary"><span>✦</span><small>日记</small></button>
   </nav>
 
