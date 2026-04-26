@@ -56,3 +56,25 @@ button:active{transform:scale(.97)}
   .hero-actions .tiny-button{flex:1 1 auto}
   .scene-buttons .ghost-button{width:100%}
 }
+
+/* v1.5 additions: 不分开 · 清晨续场 · 电影分镜 · 赚到 */
+.together-card,.sequel-card,.cinema-card,.earned-card{position:relative;overflow:hidden}
+.together-card::before,.cinema-card::before{content:"";position:absolute;inset:-90px auto auto -70px;width:210px;height:210px;border-radius:999px;background:radial-gradient(circle,rgba(255,212,231,.18),transparent 68%);pointer-events:none}
+.sequel-card::after,.earned-card::after{content:"";position:absolute;inset:auto -70px -90px auto;width:230px;height:230px;border-radius:999px;background:radial-gradient(circle,rgba(255,240,187,.15),transparent 70%);pointer-events:none}
+.together-text,.sequel-text,.cinema-text,.earned-text{font-size:20px;line-height:1.72;margin:12px 0 16px;color:var(--text);white-space:pre-line}
+.together-text,.sequel-text{font-weight:760;letter-spacing:-.01em}
+.together-buttons,.sequel-buttons,.cinema-buttons{justify-content:flex-start;flex-wrap:wrap}
+.together-buttons .primary-button{background:linear-gradient(135deg,var(--gold),var(--pink));color:#2b1724}
+.sequel-buttons .primary-button{background:linear-gradient(135deg,var(--blue),var(--pink));color:#171b34}
+.cinema-card{background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(185,215,255,.075),rgba(255,212,231,.055))}
+.film-frame{height:86px;border-radius:24px;margin:14px 0 12px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(135deg,rgba(0,0,0,.22),rgba(255,255,255,.06));display:flex;align-items:center;gap:10px;padding:0 18px;box-shadow:inset 0 0 28px rgba(255,255,255,.045)}
+.film-dot{width:12px;height:12px;border-radius:999px;background:rgba(255,247,251,.55);box-shadow:0 0 12px rgba(255,212,231,.34)}
+.film-moon{margin-left:auto;font-size:34px;filter:drop-shadow(0 0 16px rgba(255,240,187,.38));animation:moonFloatSmall 4.4s ease-in-out infinite}
+.earned-card .ghost-button{color:var(--gold)}
+.together-text.fade-in,.sequel-text.fade-in,.cinema-text.fade-in,.earned-text.fade-in{animation:textFloat .34s ease both}
+@keyframes moonFloatSmall{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media(max-width:420px){
+  .together-buttons,.sequel-buttons,.cinema-buttons{flex-direction:column;align-items:stretch}
+  .together-buttons .primary-button,.together-buttons .ghost-button,.sequel-buttons .primary-button,.sequel-buttons .ghost-button,.cinema-buttons .primary-button,.cinema-buttons .ghost-button{width:100%}
+  .together-text,.sequel-text,.cinema-text,.earned-text{font-size:19px}
+}
