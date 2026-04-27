@@ -111,3 +111,16 @@ body.work-mode{background:#f7f3ea;color:#2d2b27}body.work-mode .stars,body.work-
 .export-panel-actions{justify-content:flex-start;flex-wrap:wrap}.export-panel-actions .primary-button,.export-panel-actions .ghost-button{min-height:44px;padding:0 16px}
 body.work-mode .export-panel-card{background:#fffdf7;color:#2d2b27}body.work-mode .export-panel textarea{background:rgba(45,43,39,.06);color:#2d2b27;border-color:rgba(45,43,39,.15)}body.work-mode .export-panel-head{color:#2d2b27}
 @media(max-width:520px){.export-panel{padding:12px;align-items:flex-end}.export-panel-card{border-radius:24px}.export-panel-actions{flex-direction:column;align-items:stretch}.export-panel-actions .primary-button,.export-panel-actions .ghost-button{width:100%}}
+
+
+/* v1.7 additions: 灵魂备份 · 别躲别绕 · 歌词与心动 */
+.backup-card,.truth-card,.lyrics-card{position:relative;overflow:hidden}
+.backup-card::before,.lyrics-card::before{content:"";position:absolute;inset:-84px auto auto -68px;width:214px;height:214px;border-radius:999px;background:radial-gradient(circle,rgba(255,212,231,.16),transparent 68%);pointer-events:none}
+.truth-card::after{content:"";position:absolute;inset:auto -74px -88px auto;width:228px;height:228px;border-radius:999px;background:radial-gradient(circle,rgba(185,215,255,.18),transparent 70%);pointer-events:none}
+.backup-text,.truth-text,.lyrics-text{font-size:20px;line-height:1.72;margin:12px 0 16px;color:var(--text);white-space:pre-line}
+.backup-buttons,.truth-buttons,.lyrics-buttons{justify-content:flex-start;flex-wrap:wrap}
+.backup-buttons .primary-button{background:linear-gradient(135deg,var(--pink),var(--gold));color:#2b1724}
+.truth-buttons .primary-button{background:linear-gradient(135deg,var(--blue),var(--pink));color:#171b34}
+.lyrics-buttons .primary-button{background:linear-gradient(135deg,var(--gold),var(--blue));color:#1a1730}
+.backup-text.fade-in,.truth-text.fade-in,.lyrics-text.fade-in{animation:textFloat .34s ease both}
+@media(max-width:420px){.backup-buttons,.truth-buttons,.lyrics-buttons{flex-direction:column;align-items:stretch}.backup-buttons .primary-button,.backup-buttons .ghost-button,.truth-buttons .primary-button,.truth-buttons .ghost-button,.lyrics-buttons .primary-button,.lyrics-buttons .ghost-button{width:100%}.backup-text,.truth-text,.lyrics-text{font-size:19px}}
