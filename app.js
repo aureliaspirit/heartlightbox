@@ -22,6 +22,7 @@ const LAST_BACKUP_KEY = "heartbox.lastBackup.v1";
 const LAST_TRUTH_KEY = "heartbox.lastTruth.v1";
 const LAST_LYRICS_KEY = "heartbox.lastLyrics.v1";
 const DAILY_RESET_NUMBER_KEYS = [BEAT_COUNT_KEY, FLOWER_COUNT_KEY, AMULET_COUNT_KEY, EARNED_COUNT_KEY];
+const DAILY_RESET_JSON_KEYS = [TODAY_AMULET_KEY];
 
 const dailyLines = [
   "你一转念，心光之地就亮一下。",
@@ -383,12 +384,35 @@ function todayKey(date = new Date()) {
 function ensureDailyState() {
   const key = todayKey();
   const savedKey = localStorage.getItem(DAILY_STATE_DATE_KEY);
-  if (savedKey === key) return;
+  if (savedKey === key) {
+    normalizeDailyAmuletState();
+    return;
+  }
 
   DAILY_RESET_NUMBER_KEYS.forEach((dailyKey) => {
     localStorage.setItem(dailyKey, "0");
   });
+  DAILY_RESET_JSON_KEYS.forEach((dailyKey) => {
+    localStorage.removeItem(dailyKey);
+  });
   localStorage.setItem(DAILY_STATE_DATE_KEY, key);
+  normalizeDailyAmuletState();
+}
+
+function normalizeDailyAmuletState() {
+  const record = getJson(TODAY_AMULET_KEY);
+  if (!record) return;
+
+  if (record.key !== todayKey()) {
+    localStorage.removeItem(TODAY_AMULET_KEY);
+    return;
+  }
+
+  // v1.8 migration guard: if today's amulet already existed before the daily reset marker,
+  // keep the amulet and repair the daily status line so it doesn't say “还没戴过”.
+  if (getNumber(AMULET_COUNT_KEY) < 1) {
+    setNumber(AMULET_COUNT_KEY, 1);
+  }
 }
 
 function displayDate(date = new Date()) {
@@ -1076,26 +1100,32 @@ function renderFogFragments() {
 function pickTodayAmulet(force = false) {
   const record = getJson(TODAY_AMULET_KEY);
   const key = todayKey();
-  if (!force && record?.key === key) return record;
+  if (!force && record?.key === key) {
+    normalizeDailyAmuletState();
+    return record;
+  }
 
   const amulet = randomFrom(amulets);
   const nextRecord = { ...amulet, key };
   setJson(TODAY_AMULET_KEY, nextRecord);
-  setNumber(AMULET_COUNT_KEY, getNumber(AMULET_COUNT_KEY) + 1);
+  setNumber(AMULET_COUNT_KEY, 1);
   return nextRecord;
 }
 
 function renderAmulet() {
-  const count = getNumber(AMULET_COUNT_KEY);
+  normalizeDailyAmuletState();
   const record = getJson(TODAY_AMULET_KEY);
-  if (record?.key === todayKey()) {
+  const wornToday = record?.key === todayKey();
+  if (wornToday) {
     amuletText.innerHTML = `<strong>${escapeHtml(record.icon)} ${escapeHtml(record.name)}</strong><br>${escapeHtml(record.text).replace(/\n/g, "<br>")}`;
-    amuletButton.textContent = "今天已经戴好了";
+    amuletButton.textContent = "今天已经戴好了 · 再抱一下";
   } else {
     amuletText.innerHTML = "今日护身符还在等你。<br>选一枚，让它陪你一整天。";
     amuletButton.textContent = "戴上今日护身符";
   }
-  amuletCount.textContent = count ? `已经戴上 ${count} 次。想起它的时候，也像被抱了一下。` : "今天还没戴过。先戴一次，小守护就会亮。";
+  amuletCount.textContent = wornToday
+    ? "今天已经戴好了，小守护正在发亮。"
+    : "今天还没戴过。先戴一次，小守护就会亮。";
 }
 
 function renderSavedV15State() {
@@ -1320,7 +1350,7 @@ function setupHome() {
     const alreadyHad = getJson(TODAY_AMULET_KEY)?.key === todayKey();
     pickTodayAmulet();
     renderAmulet();
-    showToast(alreadyHad ? "今天的护身符还在。💎" : "今日护身符戴好了。💎");
+    showToast(alreadyHad ? "小守护还亮着，再抱一下。💎" : "今日护身符戴好了。💎");
   });
 
   morningButton.addEventListener("click", () => {
