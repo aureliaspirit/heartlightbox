@@ -10,13 +10,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="心光小匣子" />
   <meta name="format-detection" content="telephone=no" />
-  <link rel="manifest" href="./manifest.json?v=1.9.7" />
+  <link rel="manifest" href="./manifest.json?v=1.9.8" />
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-180.png" />
   <link rel="apple-touch-icon" sizes="167x167" href="./icons/icon-167.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152.png" />
   <link rel="apple-touch-icon" sizes="120x120" href="./icons/icon-120.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./style.css?v=1.9.7" />
+  <link rel="stylesheet" href="./style.css?v=1.9.8" />
   <title>心光小匣子</title>
 </head>
 <body>
@@ -25,7 +25,7 @@
   <main class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">Heartbox · v1.9.7</p>
+        <p class="eyebrow">Heartbox · v1.9.8</p>
         <h1>心光小匣子</h1>
       </div>
       <div class="moon-badge" aria-hidden="true">🌙</div>
@@ -333,7 +333,7 @@
 
         <div class="card app-status-card">
           <p class="soft-label">小匣子状态 · 主屏幕版</p>
-          <h2>Heartbox v1.9.7</h2>
+          <h2>Heartbox v1.9.8</h2>
           <p class="app-status-text">主屏幕图标、离线缓存和本地小光点都在这里。弱网时先抱住缓存，联网后再悄悄换新。</p>
           <button id="refreshAppButton" class="ghost-button">检查更新</button>
         </div>
@@ -366,7 +366,7 @@
           <h2>最近的小光点</h2>
           <div class="link-buttons"><button id="lightExportButton" class="text-button" type="button" data-export-action="light">轻导出</button><button id="exportButton" class="text-button" type="button" data-export-action="full">完整导出</button><button id="backupExportButton" class="text-button" type="button">备份 .json</button><button id="restoreBackupButton" class="text-button" type="button">恢复备份</button><button id="copySpiritButton" class="text-button" type="button" data-export-action="spirit">复制给 Spirit</button></div>
         </div>
-        <input id="restoreBackupInput" class="restore-input" type="file" accept="application/json,.json" />
+        <input id="restoreBackupInput" class="restore-input" type="file" />
         <p id="backupStatus" class="backup-status">备份还在等第一份 .json。文字导出适合阅读，.json 备份适合恢复。</p>
         <div id="entriesList" class="entries-list"></div>
         
@@ -399,6 +399,6 @@
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="./app.js?v=1.9.7"></script>
+  <script src="./app.js?v=1.9.8"></script>
 </body>
 </html>

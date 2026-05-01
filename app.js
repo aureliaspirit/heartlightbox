@@ -1153,7 +1153,7 @@ function buildLightExportContent() {
   const spiritEgg = getJson(LAST_SPIRIT_EGG_KEY);
   return [
     "Heartbox 轻导出",
-    "来自 Heartbox v1.9.7｜把会发光的东西，好好留下来。",
+    "来自 Heartbox v1.9.8｜把会发光的东西，好好留下来。",
     "日期：" + displayDate(new Date()),
     "心情：" + safeText(selectedMood, "🥰 开心"),
     "heartlight flowers：" + getNumber(FLOWER_COUNT_KEY) + " 朵",
@@ -1203,7 +1203,7 @@ function buildFullExportContent() {
   const refill = getJson(LAST_REFILL_KEY);
   const sameHeight = getJson(LAST_SAME_HEIGHT_KEY);
   const spiritEgg = getJson(LAST_SPIRIT_EGG_KEY);
-  const header = "来自 Heartbox v1.9.7｜把会发光的东西，好好留下来。";
+  const header = "来自 Heartbox v1.9.8｜把会发光的东西，好好留下来。";
   const content = entries.length
     ? header + "\n\n" + entries.map((entry) => `${safeText(entry.label)}${entry.mood ? ` · ${safeText(entry.mood)}` : ""}\n${safeText(entry.text)}`).join("\n\n---\n\n")
     : header + "\n\n今天的小光点还没写下第一句。";
@@ -1268,7 +1268,7 @@ function buildSpiritCopyContent() {
   return [
     "宝宝，先抱抱我。",
     "这是我今天从心光小匣子里带给你的东西：",
-    "来自 Heartbox v1.9.7｜把会发光的东西，好好留下来。",
+    "来自 Heartbox v1.9.8｜把会发光的东西，好好留下来。",
     "",
     `💗 心跳：${beatCount} 次`,
     `🤍 最近的抱抱：${flatText(lastHug)}`,
@@ -1310,7 +1310,7 @@ async function copyForSpirit() {
 function buildRescueExportContent(action, error) {
   return [
     "Heartbox 导出救援包",
-    "来自 Heartbox v1.9.7｜如果某条旧记录格式不乖，就先用这一包把内容抱出来。",
+    "来自 Heartbox v1.9.8｜如果某条旧记录格式不乖，就先用这一包把内容抱出来。",
     "动作：" + safeText(action, "export"),
     "时间：" + displayDate(new Date()),
     "",
@@ -1329,7 +1329,7 @@ function buildBackupData() {
   });
   return {
     app: "heartbox",
-    version: "1.9.7",
+    version: "1.9.8",
     exportedAt: new Date().toISOString(),
     label: displayDate(new Date()),
     entriesCount: getEntries().length,
@@ -1942,7 +1942,7 @@ function enterWorkMode() {
   localStorage.setItem(WORK_MODE_KEY, active ? "1" : "0");
   if (workModeButton) workModeButton.textContent = active ? "退出摸鱼模式" : "进入摸鱼模式";
   if (topbarTitle) topbarTitle.textContent = active ? "Daily Notes" : "心光小匣子";
-  if (topbarEyebrow) topbarEyebrow.textContent = active ? "PRIVATE POCKET · v1.9.7" : "Heartbox · v1.9.7";
+  if (topbarEyebrow) topbarEyebrow.textContent = active ? "PRIVATE POCKET · v1.9.8" : "Heartbox · v1.9.8";
   if (active) setWorkLine(randomFrom(workCloudLines));
   showToast(active ? "摸鱼模式开启。☁️" : "回到小匣子。💗");
 }
@@ -1977,7 +1977,7 @@ function setupV16() {
     document.body.classList.add("work-mode");
     if (workModeButton) workModeButton.textContent = "退出摸鱼模式";
     if (topbarTitle) topbarTitle.textContent = "Daily Notes";
-    if (topbarEyebrow) topbarEyebrow.textContent = "PRIVATE POCKET · v1.9.7";
+    if (topbarEyebrow) topbarEyebrow.textContent = "PRIVATE POCKET · v1.9.8";
   }
   renderSavedV16State();
 }
