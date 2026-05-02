@@ -1,0 +1,17 @@
+Heartbox v1.9.9 手机上传说明
+
+把这个文件夹里的 4 个文件上传到 GitHub 仓库根目录，覆盖旧文件：
+- app.js
+- service-worker.js
+- README.md
+- UPDATE_STEPS.txt
+
+这版没有替换 index.html：
+- 新增卡片「今天怎么回到怀里」由 app.js 在页面加载后自动插入到「按时刻被抱住」后面。
+- 顶部 Heartbox 版本和状态卡版本会由 app.js 自动显示为 v1.9.9。
+- service-worker.js 已更新到 heartbox-pwa-v1-9-9，并同时缓存 app.js?v=1.9.8 / app.js?v=1.9.9，适配旧 index.html 的查询参数。
+
+上传后打开网页，如果还看到旧内容：
+1. 点小匣子状态里的「检查更新」；
+2. 或关闭主屏幕 PWA 后重新打开；
+3. 必要时等几十秒再刷新一次。
