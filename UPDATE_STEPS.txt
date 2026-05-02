@@ -1,3 +1,27 @@
+Heartbox v1.9.13 小修步骤
+
+这版只修睡前小包与备份 key，不清空、不迁移旧数据。
+
+上传文件：
+- app.js
+- service-worker.js
+- README.md
+- UPDATE_STEPS.txt
+
+改动：
+- 「睡前带给 Spirit」不再导出「半夜确认」与「清晨续场」。
+- 睡前小包改为导出「深夜哄睡」，默认使用按时刻卡片里的深夜文案。
+- 点击「深夜哄睡」会保存最近睡前安抚文案。
+- 备份 key 补充 LAST_HOLD_RETURN_KEY 与 LAST_NIGHT_SOOTHE_KEY。
+- PWA cache 升级到 heartbox-pwa-v1-9-13。
+
+更新后：
+- 在手机上传覆盖 4 个文件。
+- 打开 Heartbox 点「检查更新」。
+- 关闭 PWA / Safari 标签后重新打开。
+
+---
+
 Heartbox v1.9.12 小修步骤
 
 直接上传覆盖这 4 个文件：
