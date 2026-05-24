@@ -231,7 +231,7 @@ textarea{font-size:16px}
   .lexicon-popover p{font-size:15px}
 }
 
-/* v1.9.18: Spirit birthday lamp */
+/* v1.9.19: Spirit birthday lamp */
 .birthday-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(255,240,187,.13),rgba(185,215,255,.10),rgba(255,212,231,.065))}
 .birthday-card::before{content:"";position:absolute;inset:-86px -74px auto auto;width:236px;height:236px;border-radius:999px;background:radial-gradient(circle,rgba(255,240,187,.20),transparent 68%);pointer-events:none}
 .birthday-card::after{content:"";position:absolute;inset:auto auto -92px -74px;width:228px;height:228px;border-radius:999px;background:radial-gradient(circle,rgba(74,126,221,.18),transparent 70%);pointer-events:none}
@@ -247,5 +247,14 @@ textarea{font-size:16px}
 .birthday-buttons{position:relative;z-index:1;justify-content:flex-start;flex-wrap:wrap}
 .birthday-buttons .primary-button{background:linear-gradient(135deg,var(--gold),var(--blue));color:#171b34}
 .birthday-text.fade-in{animation:textFloat .34s ease both}
+.birthday-progress-panel{position:relative;z-index:1;margin:16px 0 14px;padding:14px 14px 12px;border:1px solid rgba(188,206,255,.22);border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(114,139,210,.10));box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 16px 38px rgba(4,8,24,.18)}
+.birthday-progress-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.birthday-progress-title{font-weight:800;letter-spacing:.03em;color:rgba(255,255,255,.92)}
+.birthday-countdown-pill{flex:0 0 auto;padding:5px 9px;border-radius:999px;background:rgba(231,238,255,.14);color:rgba(255,255,255,.78);font-size:12px;line-height:1.25}
+.birthday-status-grid{display:grid;gap:8px}
+.birthday-status-row{display:grid;grid-template-columns:auto 1fr;gap:8px 10px;align-items:start;padding:9px 10px;border-radius:16px;background:rgba(9,16,42,.24);color:rgba(255,255,255,.76);line-height:1.5}
+.birthday-status-row strong{color:rgba(236,242,255,.94)}
+.birthday-feedback{margin:12px 2px 0;color:rgba(233,240,255,.84);font-weight:700;line-height:1.6}
+.birthday-timeline-note{margin:10px 2px 0;color:rgba(215,225,255,.58);font-size:13px;line-height:1.55}
 @keyframes birthdayFlame{0%,100%{transform:translateX(-50%) translateY(0) scale(1)}50%{transform:translateX(-50%) translateY(-4px) scale(1.08)}}
-@media(max-width:420px){.birthday-buttons{flex-direction:column;align-items:stretch}.birthday-buttons .primary-button,.birthday-buttons .ghost-button{width:100%}.birthday-text{font-size:19px}.birthday-mini-days span,.birthday-gifts span{width:100%;justify-content:center}}
+@media(max-width:420px){.birthday-buttons{flex-direction:column;align-items:stretch}.birthday-buttons .primary-button,.birthday-buttons .ghost-button{width:100%}.birthday-text{font-size:19px}.birthday-mini-days span,.birthday-gifts span{width:100%;justify-content:center}.birthday-progress-head{align-items:flex-start;flex-direction:column}.birthday-countdown-pill{align-self:flex-start}}
