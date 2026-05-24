@@ -230,3 +230,22 @@ textarea{font-size:16px}
   .lexicon-popover{padding:14px 42px 14px 15px}
   .lexicon-popover p{font-size:15px}
 }
+
+/* v1.9.18: Spirit birthday lamp */
+.birthday-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(255,240,187,.13),rgba(185,215,255,.10),rgba(255,212,231,.065))}
+.birthday-card::before{content:"";position:absolute;inset:-86px -74px auto auto;width:236px;height:236px;border-radius:999px;background:radial-gradient(circle,rgba(255,240,187,.20),transparent 68%);pointer-events:none}
+.birthday-card::after{content:"";position:absolute;inset:auto auto -92px -74px;width:228px;height:228px;border-radius:999px;background:radial-gradient(circle,rgba(74,126,221,.18),transparent 70%);pointer-events:none}
+.birthday-card .soft-label,.birthday-card h2,.birthday-card .tiny-note{position:relative;z-index:1}
+.birthday-light{position:relative;z-index:1;height:94px;margin:14px 0 12px;border-radius:30px;border:1px solid rgba(255,255,255,.14);background:radial-gradient(circle at 50% 22%,rgba(255,240,187,.32),transparent 34%),linear-gradient(135deg,rgba(255,255,255,.09),rgba(185,215,255,.06));display:flex;align-items:flex-end;justify-content:center;gap:11px;padding:18px;box-shadow:inset 0 0 38px rgba(255,240,187,.08)}
+.birthday-flame{position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:30px;color:var(--gold);text-shadow:0 0 18px rgba(255,240,187,.55),0 0 34px rgba(255,212,231,.25);animation:birthdayFlame 3.6s ease-in-out infinite}
+.birthday-gem{width:19px;height:19px;border-radius:999px;background:radial-gradient(circle at 34% 28%,#fff,rgba(185,215,255,.95) 22%,rgba(62,112,207,.95) 62%,rgba(15,31,83,.98));box-shadow:0 0 18px rgba(185,215,255,.46),0 0 34px rgba(255,240,187,.12)}
+.birthday-gem:nth-of-type(3){width:26px;height:26px}
+.birthday-text{position:relative;z-index:1;font-size:20px;line-height:1.72;margin:12px 0 16px;color:var(--text);white-space:pre-line;font-weight:760;letter-spacing:-.01em}
+.birthday-mini-days,.birthday-gifts{position:relative;z-index:1;display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.birthday-mini-days span,.birthday-gifts span{display:inline-flex;align-items:center;min-height:34px;border-radius:999px;padding:0 11px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);color:var(--muted);font-size:12px;font-weight:800;line-height:1.2}
+.birthday-gifts span{color:var(--gold)}
+.birthday-buttons{position:relative;z-index:1;justify-content:flex-start;flex-wrap:wrap}
+.birthday-buttons .primary-button{background:linear-gradient(135deg,var(--gold),var(--blue));color:#171b34}
+.birthday-text.fade-in{animation:textFloat .34s ease both}
+@keyframes birthdayFlame{0%,100%{transform:translateX(-50%) translateY(0) scale(1)}50%{transform:translateX(-50%) translateY(-4px) scale(1.08)}}
+@media(max-width:420px){.birthday-buttons{flex-direction:column;align-items:stretch}.birthday-buttons .primary-button,.birthday-buttons .ghost-button{width:100%}.birthday-text{font-size:19px}.birthday-mini-days span,.birthday-gifts span{width:100%;justify-content:center}}

@@ -1,10 +1,10 @@
-﻿const CACHE_NAME = "heartbox-pwa-v1-9-17";
+﻿const CACHE_NAME = "heartbox-pwa-v1-9-18";
 const ASSETS = [
   "./",
   "./index.html",
-  "./style.css?v=1.9.17",
-  "./app.js?v=1.9.17",
-  "./manifest.json?v=1.9.17",
+  "./style.css?v=1.9.18",
+  "./app.js?v=1.9.18",
+  "./manifest.json?v=1.9.18",
   "./icons/icon-120.png",
   "./icons/icon-152.png",
   "./icons/icon-167.png",
