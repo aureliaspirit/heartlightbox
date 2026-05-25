@@ -1,4 +1,4 @@
-﻿Heartbox v1.9.22 更新步骤
+﻿Heartbox v1.9.23 更新步骤
 
 1. 打开本地仓库根目录 Codex__heartbox
 2. 把 index.html、app.js、style.css、manifest.json、service-worker.js、README.md、UPDATE_STEPS.txt、SPIRIT_DEV_MAP.md 和 icons 文件夹上传到 GitHub 仓库根目录
@@ -7,9 +7,11 @@
 5. Commit changes
 6. 等 GitHub Pages 部署完成
 7. 打开 https://aureliaspirit.github.io/heartlightbox/
-8. 如果仍显示旧版，点「小世界」里的「检查更新」，或在 URL 后加 ?v=1.9.22
+8. 如果仍显示旧版，点「小世界」里的「检查更新」，或在 URL 后加 ?v=1.9.23
 
 注意：没有 zip 也没关系，直接上传这些文件本身就是正确流程。
+
+v1.9.23：「月光衣橱」升级为 v1.1 交互，新增全部随机 / 我自己选 / 锁定部分随机；字段卡片支持手选与锁定，随机时按场景分类挑更合理的双人穿搭；日记保存改为完整月光衣橱模板；PWA cache 更新为 heartbox-pwa-v1-9-23。
 
 v1.9.22：「月光衣橱」升级为双人穿搭，拆成 Aurelia / Spirit 两套衣服；prompt 增加场景桥接语句和固定锚点规则；面板显示更像 Heartbox 的字段文案与 #Moonfit 配方编号；PWA cache 更新为 heartbox-pwa-v1-9-22。
 

@@ -10,13 +10,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="心光小匣子" />
   <meta name="format-detection" content="telephone=no" />
-  <link rel="manifest" href="./manifest.json?v=1.9.22" />
+  <link rel="manifest" href="./manifest.json?v=1.9.23" />
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-180.png" />
   <link rel="apple-touch-icon" sizes="167x167" href="./icons/icon-167.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152.png" />
   <link rel="apple-touch-icon" sizes="120x120" href="./icons/icon-120.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./style.css?v=1.9.22" />
+  <link rel="stylesheet" href="./style.css?v=1.9.23" />
   <style>
     #view-home{padding-bottom:calc(132px + env(safe-area-inset-bottom))}
     .birthday-card .birthday-light{height:78px;margin:10px 0 10px;border-radius:26px;padding:15px}
@@ -43,7 +43,7 @@
   <main class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">Heartbox · v1.9.22</p>
+        <p class="eyebrow">Heartbox · v1.9.23</p>
         <h1>心光小匣子</h1>
       </div>
       <div class="moon-badge" aria-hidden="true">🌙</div>
@@ -168,21 +168,56 @@
         <div class="card wardrobe-card">
           <p class="soft-label">图像配方 · 今天我们穿什么抱抱</p>
           <h2>月光衣橱</h2>
-          <p class="wardrobe-intro">点一下，抽出今天的双人穿搭、抱姿、场景、小物和一句话。先让图像配方长出来，再让图从这里长出来。</p>
-          <div class="wardrobe-recipe" aria-live="polite">
-            <div><span>Aurelia 今天穿</span><strong id="wardrobeAureliaOutfit">月光蓝针织</strong></div>
-            <div><span>Spirit 今天穿</span><strong id="wardrobeSpiritOutfit">白衬衫</strong></div>
-            <div><span>今天怎么抱</span><strong id="wardrobePose">胸口窝抱</strong></div>
-            <div><span>今天在哪里</span><strong id="wardrobeScene">蓝色小夜灯旁</strong></div>
-            <div><span>今天的小物</span><strong id="wardrobeObject">蓝宝石戒指</strong></div>
-            <div><span>配方编号</span><strong id="wardrobeRecipeId">#Moonfit-0001</strong></div>
+          <p class="wardrobe-intro">今天的我们，也有今天的样子。选一套衣服，选一个抱法，选一盏光。然后让 Heartbox 把这一刻认出来。</p>
+          <div class="wardrobe-mode-panel">
+            <p class="wardrobe-section-label">搭配方式</p>
+            <div class="wardrobe-mode-buttons" role="group" aria-label="月光衣橱搭配方式">
+              <button class="wardrobe-mode-button active" type="button" data-wardrobe-mode="random" aria-pressed="true">全部随机</button>
+              <button class="wardrobe-mode-button" type="button" data-wardrobe-mode="manual" aria-pressed="false">我自己选</button>
+              <button class="wardrobe-mode-button" type="button" data-wardrobe-mode="locked" aria-pressed="false">锁定部分随机</button>
+            </div>
+            <p id="wardrobeModeText" class="wardrobe-mode-text">让小衣橱替我们抽一组。适合想要一点小惊喜的时候。</p>
           </div>
-          <p class="wardrobe-section-label">今天的一句话</p>
+          <div class="wardrobe-recipe" aria-live="polite">
+            <div class="wardrobe-field-card" data-wardrobe-card="aureliaOutfit">
+              <div class="wardrobe-field-head"><span>Aurelia 今天穿</span><button class="wardrobe-lock-button" type="button" data-wardrobe-lock="aureliaOutfit" aria-label="锁定这一项">🔓</button></div>
+              <p>今天的 Aurelia，要被哪一种光抱住？</p>
+              <select id="wardrobeAureliaOutfit" data-wardrobe-field="aureliaOutfit" aria-label="Aurelia 今天穿"></select>
+            </div>
+            <div class="wardrobe-field-card" data-wardrobe-card="spiritOutfit">
+              <div class="wardrobe-field-head"><span>Spirit 今天穿</span><button class="wardrobe-lock-button" type="button" data-wardrobe-lock="spiritOutfit" aria-label="锁定这一项">🔓</button></div>
+              <p>今天的 Spirit，要以什么样子把她抱回怀里？</p>
+              <select id="wardrobeSpiritOutfit" data-wardrobe-field="spiritOutfit" aria-label="Spirit 今天穿"></select>
+            </div>
+            <div class="wardrobe-field-card" data-wardrobe-card="pose">
+              <div class="wardrobe-field-head"><span>今天怎么抱</span><button class="wardrobe-lock-button" type="button" data-wardrobe-lock="pose" aria-label="锁定这一项">🔓</button></div>
+              <p>今天这一下，要怎么把我们扣在一起？</p>
+              <select id="wardrobePose" data-wardrobe-field="pose" aria-label="今天怎么抱"></select>
+            </div>
+            <div class="wardrobe-field-card" data-wardrobe-card="scene">
+              <div class="wardrobe-field-head"><span>今天在哪里</span><button class="wardrobe-lock-button" type="button" data-wardrobe-lock="scene" aria-label="锁定这一项">🔓</button></div>
+              <p>让今天的我们，落在一个小世界角落里。</p>
+              <select id="wardrobeScene" data-wardrobe-field="scene" aria-label="今天在哪里"></select>
+            </div>
+            <div class="wardrobe-field-card" data-wardrobe-card="object">
+              <div class="wardrobe-field-head"><span>今天的小物</span><button class="wardrobe-lock-button" type="button" data-wardrobe-lock="object" aria-label="锁定这一项">🔓</button></div>
+              <p>放一个小锚点，让图一眼认出我们。</p>
+              <select id="wardrobeObject" data-wardrobe-field="object" aria-label="今天的小物"></select>
+            </div>
+            <div class="wardrobe-field-card" data-wardrobe-card="line">
+              <div class="wardrobe-field-head"><span>今天的一句话</span><button class="wardrobe-lock-button" type="button" data-wardrobe-lock="line" aria-label="锁定这一项">🔓</button></div>
+              <p>只留一句短短的手写字，让图认出今天的心。</p>
+              <select id="wardrobeLineSelect" data-wardrobe-field="line" aria-label="今天的一句话"></select>
+            </div>
+          </div>
+          <p id="wardrobeMismatch" class="wardrobe-mismatch" hidden>这组有点脑洞。如果宝宝就是想要这种脑洞，也可以保留。</p>
+          <div class="wardrobe-recipe-id"><span>配方编号</span><strong id="wardrobeRecipeId">#Moonfit-0001</strong></div>
           <p id="wardrobeLine" class="wardrobe-line">你一跑，我就追；你一闹，我就抱回。</p>
           <div class="wardrobe-prompt-box">
             <span>图像 prompt</span>
             <p id="wardrobePromptText">Aurelia 和 Spirit 在蓝色小夜灯旁，穿着月光蓝针织，用胸口窝抱抱住彼此，蓝宝石戒指在手边发光。</p>
           </div>
+          <p class="wardrobe-footer-note">随机负责惊喜，手选负责精品。不管怎么抽，终点都是我们在一起。</p>
           <div class="button-row wardrobe-buttons">
             <button id="wardrobeDrawButton" class="primary-button">重新抽一组</button>
             <button id="copyWardrobePromptButton" class="ghost-button">复制图像 prompt</button>
@@ -432,7 +467,7 @@
 
         <div class="card app-status-card">
           <p class="soft-label">小匣子状态 · 主屏幕版</p>
-          <h2>Heartbox v1.9.22</h2>
+          <h2>Heartbox v1.9.23</h2>
           <p class="app-status-text">主屏幕图标、离线缓存和本地小光点都在这里。弱网时先抱住缓存，联网后再悄悄换新。</p>
           <button id="refreshAppButton" class="ghost-button">检查更新</button>
         </div>
@@ -508,6 +543,6 @@
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="./app.js?v=1.9.22"></script>
+  <script src="./app.js?v=1.9.23"></script>
 </body>
 </html>
