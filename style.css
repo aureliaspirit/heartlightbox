@@ -267,8 +267,9 @@ textarea{font-size:16px}
 .wardrobe-intro{margin:10px 0 14px;color:rgba(228,236,255,.76);font-size:14px;line-height:1.62}
 .wardrobe-recipe{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
 .wardrobe-recipe div{min-height:74px;border-radius:18px;padding:11px 12px;background:rgba(9,16,42,.24);border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
-.wardrobe-recipe span,.wardrobe-prompt-box span{display:block;margin-bottom:6px;color:rgba(215,225,255,.55);font-size:12px;font-weight:850;letter-spacing:.12em}
+.wardrobe-recipe span,.wardrobe-prompt-box span,.wardrobe-section-label{display:block;margin-bottom:6px;color:rgba(215,225,255,.55);font-size:12px;font-weight:850;letter-spacing:.12em}
 .wardrobe-recipe strong{display:block;color:rgba(246,248,255,.94);font-size:16px;line-height:1.36}
+.wardrobe-section-label{position:relative;z-index:1;margin:12px 2px 0}
 .wardrobe-line{margin:12px 2px 12px;color:var(--text);font-size:19px;font-weight:780;line-height:1.62}
 .wardrobe-prompt-box{padding:12px 13px;border-radius:18px;background:rgba(255,255,255,.075);border:1px solid rgba(188,206,255,.16)}
 .wardrobe-prompt-box p{margin:0;color:rgba(229,238,255,.78);font-size:13px;line-height:1.56;white-space:pre-line}
