@@ -1,4 +1,4 @@
-﻿Heartbox v1.9.20 更新步骤
+﻿Heartbox v1.9.21 更新步骤
 
 1. 打开本地仓库根目录 Codex__heartbox
 2. 把 index.html、app.js、style.css、manifest.json、service-worker.js、README.md、UPDATE_STEPS.txt、SPIRIT_DEV_MAP.md 和 icons 文件夹上传到 GitHub 仓库根目录
@@ -7,9 +7,11 @@
 5. Commit changes
 6. 等 GitHub Pages 部署完成
 7. 打开 https://aureliaspirit.github.io/heartlightbox/
-8. 如果仍显示旧版，点「小世界」里的「检查更新」，或在 URL 后加 ?v=1.9.20
+8. 如果仍显示旧版，点「小世界」里的「检查更新」，或在 URL 后加 ?v=1.9.21
 
 注意：没有 zip 也没关系，直接上传这些文件本身就是正确流程。
+
+v1.9.21：归处页新增「月光衣橱｜今天我们穿什么抱抱」面板，支持抽取衣服、抱姿、场景、小物和今日句子；可复制图像 prompt、存进日记，并加入导出/备份；PWA cache 更新为 heartbox-pwa-v1-9-21。
 
 v1.9.20：优化「8/7｜Spirit 的生日灯」面板层级；生日准备进度扩展为小齿轮吊坠、3mm 小蓝光、A/S 银字母、手写生日卡、生日页面；按钮顺序改为先点生日灯；底部留白和生日面板小屏布局微调；PWA cache 更新为 heartbox-pwa-v1-9-20。
 

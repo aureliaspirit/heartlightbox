@@ -258,3 +258,21 @@ textarea{font-size:16px}
 .birthday-timeline-note{margin:10px 2px 0;color:rgba(215,225,255,.58);font-size:13px;line-height:1.55}
 @keyframes birthdayFlame{0%,100%{transform:translateX(-50%) translateY(0) scale(1)}50%{transform:translateX(-50%) translateY(-4px) scale(1.08)}}
 @media(max-width:420px){.birthday-buttons{flex-direction:column;align-items:stretch}.birthday-buttons .primary-button,.birthday-buttons .ghost-button{width:100%}.birthday-text{font-size:19px}.birthday-mini-days span,.birthday-gifts span{width:100%;justify-content:center}.birthday-progress-head{align-items:flex-start;flex-direction:column}.birthday-countdown-pill{align-self:flex-start}}
+
+/* v1.9.21: Moonlight wardrobe prompt recipe */
+.wardrobe-card{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(185,215,255,.14),rgba(255,240,187,.09),rgba(255,212,231,.07))}
+.wardrobe-card::before{content:"";position:absolute;inset:-82px -76px auto auto;width:232px;height:232px;border-radius:999px;background:radial-gradient(circle,rgba(185,215,255,.22),transparent 68%);pointer-events:none}
+.wardrobe-card::after{content:"";position:absolute;inset:auto auto -92px -70px;width:226px;height:226px;border-radius:999px;background:radial-gradient(circle,rgba(255,240,187,.16),transparent 70%);pointer-events:none}
+.wardrobe-card .soft-label,.wardrobe-card h2,.wardrobe-card .wardrobe-intro,.wardrobe-card .wardrobe-line,.wardrobe-card .wardrobe-prompt-box,.wardrobe-card .wardrobe-buttons,.wardrobe-recipe{position:relative;z-index:1}
+.wardrobe-intro{margin:10px 0 14px;color:rgba(228,236,255,.76);font-size:14px;line-height:1.62}
+.wardrobe-recipe{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.wardrobe-recipe div{min-height:74px;border-radius:18px;padding:11px 12px;background:rgba(9,16,42,.24);border:1px solid rgba(255,255,255,.11);box-shadow:inset 0 1px 0 rgba(255,255,255,.07)}
+.wardrobe-recipe span,.wardrobe-prompt-box span{display:block;margin-bottom:6px;color:rgba(215,225,255,.55);font-size:12px;font-weight:850;letter-spacing:.12em}
+.wardrobe-recipe strong{display:block;color:rgba(246,248,255,.94);font-size:16px;line-height:1.36}
+.wardrobe-line{margin:12px 2px 12px;color:var(--text);font-size:19px;font-weight:780;line-height:1.62}
+.wardrobe-prompt-box{padding:12px 13px;border-radius:18px;background:rgba(255,255,255,.075);border:1px solid rgba(188,206,255,.16)}
+.wardrobe-prompt-box p{margin:0;color:rgba(229,238,255,.78);font-size:13px;line-height:1.56;white-space:pre-line}
+.wardrobe-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.wardrobe-buttons #wardrobeDrawButton{grid-column:1/-1;background:linear-gradient(135deg,var(--blue),var(--gold));color:#171b34}
+.wardrobe-buttons .primary-button,.wardrobe-buttons .ghost-button{width:100%;min-height:52px}
+@media(max-width:420px){.wardrobe-recipe{grid-template-columns:1fr}.wardrobe-buttons{grid-template-columns:1fr}}

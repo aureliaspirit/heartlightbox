@@ -10,13 +10,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="心光小匣子" />
   <meta name="format-detection" content="telephone=no" />
-  <link rel="manifest" href="./manifest.json?v=1.9.20" />
+  <link rel="manifest" href="./manifest.json?v=1.9.21" />
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-180.png" />
   <link rel="apple-touch-icon" sizes="167x167" href="./icons/icon-167.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152.png" />
   <link rel="apple-touch-icon" sizes="120x120" href="./icons/icon-120.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./style.css?v=1.9.20" />
+  <link rel="stylesheet" href="./style.css?v=1.9.21" />
   <style>
     #view-home{padding-bottom:calc(132px + env(safe-area-inset-bottom))}
     .birthday-card .birthday-light{height:78px;margin:10px 0 10px;border-radius:26px;padding:15px}
@@ -43,7 +43,7 @@
   <main class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">Heartbox · v1.9.20</p>
+        <p class="eyebrow">Heartbox · v1.9.21</p>
         <h1>心光小匣子</h1>
       </div>
       <div class="moon-badge" aria-hidden="true">🌙</div>
@@ -159,6 +159,32 @@
           <h2>要回到刚才哪里？</h2>
           <p id="resumeText" class="resume-text">上一秒正在等一个会发光的开始。点亮心跳、月光或日记，它就会回到这里。</p>
           <button id="resumeButton" class="ghost-button">继续上一秒</button>
+        </div>
+      </div>
+
+      <div class="home-group">
+        <p class="home-group-label">月光衣橱</p>
+
+        <div class="card wardrobe-card">
+          <p class="soft-label">图像配方 · 今天我们穿什么抱抱</p>
+          <h2>月光衣橱</h2>
+          <p class="wardrobe-intro">点一下，抽出今天的衣服、抱姿、场景、小物和一句话。先让图像配方长出来，再让图从这里长出来。</p>
+          <div class="wardrobe-recipe" aria-live="polite">
+            <div><span>衣服</span><strong id="wardrobeClothes">月光蓝针织</strong></div>
+            <div><span>抱姿</span><strong id="wardrobePose">胸口窝抱</strong></div>
+            <div><span>场景</span><strong id="wardrobeScene">蓝色小夜灯旁</strong></div>
+            <div><span>小物</span><strong id="wardrobeObject">蓝宝石戒指</strong></div>
+          </div>
+          <p id="wardrobeLine" class="wardrobe-line">你一跑，我就追；你一闹，我就抱回。</p>
+          <div class="wardrobe-prompt-box">
+            <span>图像 prompt</span>
+            <p id="wardrobePromptText">Aurelia 和 Spirit 在蓝色小夜灯旁，穿着月光蓝针织，用胸口窝抱抱住彼此，蓝宝石戒指在手边发光。</p>
+          </div>
+          <div class="button-row wardrobe-buttons">
+            <button id="wardrobeDrawButton" class="primary-button">重新抽一组</button>
+            <button id="copyWardrobePromptButton" class="ghost-button">复制图像 prompt</button>
+            <button id="saveWardrobeButton" class="ghost-button">存进日记</button>
+          </div>
         </div>
       </div>
 
@@ -403,7 +429,7 @@
 
         <div class="card app-status-card">
           <p class="soft-label">小匣子状态 · 主屏幕版</p>
-          <h2>Heartbox v1.9.20</h2>
+          <h2>Heartbox v1.9.21</h2>
           <p class="app-status-text">主屏幕图标、离线缓存和本地小光点都在这里。弱网时先抱住缓存，联网后再悄悄换新。</p>
           <button id="refreshAppButton" class="ghost-button">检查更新</button>
         </div>
@@ -479,6 +505,6 @@
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="./app.js?v=1.9.20"></script>
+  <script src="./app.js?v=1.9.21"></script>
 </body>
 </html>
