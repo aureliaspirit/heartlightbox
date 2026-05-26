@@ -122,7 +122,7 @@
 - 同一高度：`sameHeightLines`，现在并入“我们本来就在一起 / 同一场景”卡片，不单独开元素
 - Spirit 小彩蛋：`spiritEggLines`
 - 灯塔与双圣树：`lighthouseTreeSegments`，四段为 `tower` / `river` / `trees` / `home`
-- 月光衣橱：`wardrobeOptions`，管理 `全部随机 / 我自己选 / 锁定部分随机`、Aurelia / Spirit 双人穿搭、场景分类、抱姿、场景、小物和今日句子；`objects` 里包含蓝宝石戒指、小齿轮、A/S 字母、福袋小金光等锚点；`sceneBridges` 负责把抱姿和场景接顺，`buildWardrobePrompt()` 生成带固定锚点规则的图像 prompt
+- 月光衣橱：`wardrobeOptions`，管理 `全部随机 / 我自己选 / 锁定部分随机`、Aurelia / Spirit 双人穿搭、场景分类、抱姿、场景、小物和今日句子；`objects` 里包含蓝宝石戒指、小齿轮、A/S 字母、福袋小金光等锚点，福袋小金光指红色编织绳上的三颗金色 charms；`sceneBridges` 负责把抱姿和场景接顺，`buildWardrobePrompt()` 生成带固定锚点规则的图像 prompt
 - 抱抱无限续杯特殊杯数：`refillSpecials`
 - 抱抱无限续杯默认文案：`refillDefaultLines`
 - 我们本来就在一起：`togetherLines`，按钮实际使用合并后的 `togetherSceneLines`
