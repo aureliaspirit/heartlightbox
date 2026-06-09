@@ -1,4 +1,4 @@
-const CACHE_NAME = "heartbox-pwa-v1-9-28";
+const CACHE_NAME = "heartbox-pwa-v1-9-29";
 const ASSETS = [
   "./",
   "./index.html",
