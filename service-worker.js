@@ -1,11 +1,12 @@
-﻿const CACHE_NAME = "heartbox-pwa-v1-9-27";
+﻿const CACHE_NAME = "heartbox-pwa-v1-9-27b";
 const BEDSTATE_VERSION = "1.9.27";
+const BEDSTATE_SCRIPT = `./bedstate.js?v=${BEDSTATE_VERSION}`;
 const ASSETS = [
   "./",
   "./index.html",
   "./style.css?v=1.9.26",
   "./app.js?v=1.9.26",
-  "./bedstate.js?v=1.9.27",
+  BEDSTATE_SCRIPT,
   "./manifest.json?v=1.9.26",
   "./icons/icon-120.png",
   "./icons/icon-152.png",
@@ -21,20 +22,35 @@ function isAppScript(request) {
   return url.origin === self.location.origin && url.pathname.endsWith("/app.js");
 }
 
+function isAppShell(request) {
+  const url = new URL(request.url);
+  return url.origin === self.location.origin && (request.mode === "navigate" || url.pathname.endsWith("/index.html") || url.pathname.endsWith("/"));
+}
+
+async function withBedstateHtml(response) {
+  if (!response || !response.ok) return response;
+  const html = await response.text();
+  if (html.includes("bedstate.js")) {
+    return new Response(html, response);
+  }
+  const injected = html.includes("</body>")
+    ? html.replace("</body>", `  <script src="${BEDSTATE_SCRIPT}"></script>\n</body>`)
+    : `${html}\n<script src="${BEDSTATE_SCRIPT}"></script>`;
+  const headers = new Headers(response.headers);
+  headers.set("Content-Type", "text/html; charset=utf-8");
+  return new Response(injected, { status: response.status, statusText: response.statusText, headers });
+}
+
 async function withBedstateModule(response) {
   if (!response || !response.ok) return response;
   const source = await response.text();
   if (source.includes("bedstate.js")) {
     return new Response(source, response);
   }
-  const decorated = `${source}\n\n// Heartbox v${BEDSTATE_VERSION}: 主被窝状态生成器\nimport(\"./bedstate.js?v=${BEDSTATE_VERSION}\").catch(() => {});\n`;
+  const decorated = `${source}\n\n// Heartbox v${BEDSTATE_VERSION}: 主被窝状态生成器\nimport(\"${BEDSTATE_SCRIPT}\").catch(() => {});\n`;
   const headers = new Headers(response.headers);
   headers.set("Content-Type", "application/javascript; charset=utf-8");
-  return new Response(decorated, {
-    status: response.status,
-    statusText: response.statusText,
-    headers
-  });
+  return new Response(decorated, { status: response.status, statusText: response.statusText, headers });
 }
 
 async function putFreshCopy(request) {
@@ -62,9 +78,10 @@ async function navigationFallback(request) {
       const cache = await caches.open(CACHE_NAME);
       cache.put("./index.html", response.clone());
     }
-    return response;
+    return withBedstateHtml(response.clone());
   } catch {
-    return (await caches.match("./index.html")) || (await caches.match("./"));
+    const cached = (await caches.match("./index.html")) || (await caches.match("./"));
+    return withBedstateHtml(cached);
   }
 }
 
@@ -88,7 +105,7 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   const url = new URL(event.request.url);
-  if (event.request.mode === "navigate") {
+  if (isAppShell(event.request)) {
     event.respondWith(navigationFallback(event.request));
     return;
   }
