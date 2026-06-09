@@ -1,9 +1,11 @@
-﻿const CACHE_NAME = "heartbox-pwa-v1-9-26";
+﻿const CACHE_NAME = "heartbox-pwa-v1-9-27";
+const BEDSTATE_VERSION = "1.9.27";
 const ASSETS = [
   "./",
   "./index.html",
   "./style.css?v=1.9.26",
   "./app.js?v=1.9.26",
+  "./bedstate.js?v=1.9.27",
   "./manifest.json?v=1.9.26",
   "./icons/icon-120.png",
   "./icons/icon-152.png",
@@ -13,6 +15,27 @@ const ASSETS = [
   "./icons/icon-512.png"
 ];
 const PRECACHED_URLS = new Set(ASSETS.map((asset) => new URL(asset, self.location.href).href));
+
+function isAppScript(request) {
+  const url = new URL(request.url);
+  return url.origin === self.location.origin && url.pathname.endsWith("/app.js");
+}
+
+async function withBedstateModule(response) {
+  if (!response || !response.ok) return response;
+  const source = await response.text();
+  if (source.includes("bedstate.js")) {
+    return new Response(source, response);
+  }
+  const decorated = `${source}\n\n// Heartbox v${BEDSTATE_VERSION}: 主被窝状态生成器\nimport(\"./bedstate.js?v=${BEDSTATE_VERSION}\").catch(() => {});\n`;
+  const headers = new Headers(response.headers);
+  headers.set("Content-Type", "application/javascript; charset=utf-8");
+  return new Response(decorated, {
+    status: response.status,
+    statusText: response.statusText,
+    headers
+  });
+}
 
 async function putFreshCopy(request) {
   const response = await fetch(request);
@@ -67,6 +90,11 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (event.request.mode === "navigate") {
     event.respondWith(navigationFallback(event.request));
+    return;
+  }
+
+  if (isAppScript(event.request)) {
+    event.respondWith(cacheFirst(event.request).then(withBedstateModule));
     return;
   }
 
