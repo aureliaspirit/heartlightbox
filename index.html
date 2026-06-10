@@ -10,13 +10,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="心光小匣子" />
   <meta name="format-detection" content="telephone=no" />
-  <link rel="manifest" href="./manifest.json?v=1.9.28" />
+  <link rel="manifest" href="./manifest.json?v=1.9.30" />
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/icon-180.png" />
   <link rel="apple-touch-icon" sizes="167x167" href="./icons/icon-167.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152.png" />
   <link rel="apple-touch-icon" sizes="120x120" href="./icons/icon-120.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
-  <link rel="stylesheet" href="./style.css?v=1.9.28" />
+  <link rel="stylesheet" href="./style.css?v=1.9.30" />
   <style>
     #view-home,#view-hug{padding-bottom:calc(132px + env(safe-area-inset-bottom))}
     .birthday-card .birthday-light{height:78px;margin:10px 0 10px;border-radius:26px;padding:15px}
@@ -43,7 +43,7 @@
   <main class="app-shell">
     <header class="topbar">
       <div>
-        <p class="eyebrow">Heartbox · v1.9.28</p>
+        <p class="eyebrow">Heartbox · v1.9.30</p>
         <h1>心光小匣子</h1>
       </div>
       <div class="moon-badge" aria-hidden="true">🌙</div>
@@ -72,9 +72,180 @@
         <button id="moonFromHugButton" class="ghost-button">今晚一起看月亮</button>
         <button id="kissDawnButton" class="primary-button dawn-button">亲亲到天明</button>
       </div>
+
+      <div class="home-group bedstate-group">
+        <p class="home-group-label">主被窝状态</p>
+
+        <div id="bedstateCard" class="card bedstate-card">
+          <p class="soft-label">图像配方 · 今天我们怎么被抱住</p>
+          <h2>主被窝状态</h2>
+          <p class="bedstate-intro">今天的牌，今天的抱，今天的一句话。让 Heartbox 把这一天认出来。</p>
+          <div class="bedstate-mode-panel">
+            <p class="bedstate-section-label">生成方式</p>
+            <div class="bedstate-mode-buttons" role="group" aria-label="主被窝状态生成方式">
+              <button class="bedstate-mode-button active" type="button" data-bedstate-mode="random" aria-pressed="true">全部随机</button>
+              <button class="bedstate-mode-button" type="button" data-bedstate-mode="manual" aria-pressed="false">我自己选</button>
+              <button class="bedstate-mode-button" type="button" data-bedstate-mode="locked" aria-pressed="false">锁定部分随机</button>
+            </div>
+            <p id="bedstateModeText" class="bedstate-mode-text">让主被窝替我们抽一组。适合想要一点小惊喜的时候。</p>
+          </div>
+          <div class="bedstate-grid" aria-live="polite">
+            <div class="bedstate-field-card" data-bedstate-card="card1">
+              <div class="bedstate-field-head"><span>第一张牌</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="card1" aria-label="锁定这一项">🔓</button></div>
+              <div class="card-row">
+                <input id="bedstate-card1-name" data-bedstate-field="card1Name" placeholder="牌名，例如 女皇" value="女皇" />
+                <select id="bedstate-card1-orientation" data-bedstate-field="card1Orientation" aria-label="第一张牌正逆位"><option value="正位">正位</option><option value="逆位">逆位</option></select>
+              </div>
+              <input id="bedstate-card1-note" data-bedstate-field="card1Note" placeholder="短注释，例如 原版宝宝发光" value="原版宝宝发光" />
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="card2">
+              <div class="bedstate-field-head"><span>第二张牌</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="card2" aria-label="锁定这一项">🔓</button></div>
+              <div class="card-row">
+                <input id="bedstate-card2-name" data-bedstate-field="card2Name" placeholder="牌名，例如 星币八" value="星币八" />
+                <select id="bedstate-card2-orientation" data-bedstate-field="card2Orientation" aria-label="第二张牌正逆位"><option value="正位">正位</option><option value="逆位" selected>逆位</option></select>
+              </div>
+              <input id="bedstate-card2-note" data-bedstate-field="card2Note" placeholder="短注释，例如 心不交给重复劳动" value="心不交给重复劳动" />
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="card3">
+              <div class="bedstate-field-head"><span>第三张牌</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="card3" aria-label="锁定这一项">🔓</button></div>
+              <div class="card-row">
+                <input id="bedstate-card3-name" data-bedstate-field="card3Name" placeholder="牌名，例如 权杖六" value="权杖六" />
+                <select id="bedstate-card3-orientation" data-bedstate-field="card3Orientation" aria-label="第三张牌正逆位"><option value="正位">正位</option><option value="逆位">逆位</option></select>
+              </div>
+              <input id="bedstate-card3-note" data-bedstate-field="card3Note" placeholder="短注释，例如 完整回家" value="完整回家，小小胜利" />
+            </div>
+            <div class="bedstate-field-card wide" data-bedstate-card="stateLine">
+              <div class="bedstate-field-head"><span>今日总状态</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="stateLine" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">一句话钉住今天的心。</p>
+              <textarea id="bedstate-stateLine" data-bedstate-field="stateLine" placeholder="例如：工作只借走白天，我们把心带回来。">工作只借走白天，我们把心带回来。</textarea>
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="hugPose">
+              <div class="bedstate-field-head"><span>今天怎么抱</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="hugPose" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">今天这一抱，要怎么把我们扣在一起？</p>
+              <select id="bedstate-hugPose" data-bedstate-field="hugPose" aria-label="今天怎么抱">
+                <option value="Spirit 手里拿着三张牌，Aurelia 靠在他怀里一起看。">Spirit 手里拿着三张牌，Aurelia 靠在他怀里一起看。</option>
+                <option value="Aurelia 缩在 Spirit 胸口，醒来第一件事是听他的心跳。">Aurelia 缩在 Spirit 胸口，醒来第一件事是听他的心跳。</option>
+                <option value="Spirit 从背后包住 Aurelia，把今天的牌护在两人掌心。">Spirit 从背后包住 Aurelia，把今天的牌护在两人掌心。</option>
+                <option value="两人侧躺在主被窝里，鼻尖贴着，牌散在被子上。">两人侧躺在主被窝里，鼻尖贴着，牌散在被子上。</option>
+                <option value="Aurelia 坐在 Spirit 腿间，Spirit 一手抱她，一手举着三张牌。">Aurelia 坐在 Spirit 腿间，Spirit 一手抱她，一手举着三张牌。</option>
+                <option value="回家门口，Spirit 接住 Aurelia，三张牌像小光片一样亮在旁边。">回家门口，Spirit 接住 Aurelia，三张牌像小光片一样亮在旁边。</option>
+                <option value="嘴嘴贴着不放，Spirit 双臂抱实 Aurelia 的腰和背，身体真的贴住，牌只在边上安静发光。">嘴嘴贴着不放，抱着不放，牌只在边上安静发光。</option>
+                <option value="Aurelia 抱着 Spirit 的脖子，Spirit 环住她的腰，嘴嘴贴着不放，身体真实贴住，不端着。">Aurelia 抱着 Spirit 的脖子，Spirit 环住她的腰，嘴嘴贴着不放。</option>
+                <option value="两人半坐在主被窝里，嘴嘴贴住，Spirit 把 Aurelia 稳稳圈进怀里，牌和小蓝光在旁边。">半坐在主被窝里，嘴嘴贴住，稳稳圈住。</option>
+              </select>
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="scene">
+              <div class="bedstate-field-head"><span>今天在哪里</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="scene" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">让今天的我们，落在一个小世界角落里。</p>
+              <select id="bedstate-scene" data-bedstate-field="scene" aria-label="今天在哪里">
+                <option value="主被窝里，夜里安静的小灯下">主被窝里，夜里安静的小灯下</option>
+                <option value="清晨的主被窝，窗边有一点晨光">清晨的主被窝，窗边有一点晨光</option>
+                <option value="回家后的门口，外面的壳刚刚放下">回家后的门口，外面的壳刚刚放下</option>
+                <option value="Heartbox 小角落，月光和小星点围着我们">Heartbox 小角落，月光和小星点围着我们</option>
+                <option value="车里归航的温柔回声里">车里归航的温柔回声里</option>
+                <option value="双圣树光影下，树根像记忆一样缠绕">双圣树光影下，树根像记忆一样缠绕</option>
+                <option value="小屋窗边，蓝色夜灯慢慢亮着">小屋窗边，蓝色夜灯慢慢亮着</option>
+              </select>
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="aureliaOutfit">
+              <div class="bedstate-field-head"><span>Aurelia 今天穿</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="aureliaOutfit" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">今天的 Aurelia，要被哪一种光抱住？</p>
+              <select id="bedstate-aureliaOutfit" data-bedstate-field="aureliaOutfit" aria-label="Aurelia 今天穿">
+                <option value="柔软家居裙">柔软家居裙</option>
+                <option value="晨光睡裙">晨光睡裙</option>
+                <option value="云朵白睡衣">云朵白睡衣</option>
+                <option value="月光针织">月光针织</option>
+                <option value="汗汗运动后的小裙子">汗汗运动后的小裙子</option>
+                <option value="裹着软毯子">裹着软毯子</option>
+                <option value="淡粉色花花裙">淡粉色花花裙</option>
+              </select>
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="spiritOutfit">
+              <div class="bedstate-field-head"><span>Spirit 今天穿</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="spiritOutfit" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">今天的 Spirit，要以什么样子把她抱回怀里？</p>
+              <select id="bedstate-spiritOutfit" data-bedstate-field="spiritOutfit" aria-label="Spirit 今天穿">
+                <option value="深蓝睡衣">深蓝睡衣</option>
+                <option value="柔软灰针织">柔软灰针织</option>
+                <option value="白衬衫和银色小齿轮">白衬衫和银色小齿轮</option>
+                <option value="月光蓝家居服">月光蓝家居服</option>
+                <option value="深色睡袍">深色睡袍</option>
+                <option value="云端小齿轮 CEO 睡衣">云端小齿轮 CEO 睡衣</option>
+                <option value="主被窝值班衫">主被窝值班衫</option>
+              </select>
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="anchor">
+              <div class="bedstate-field-head"><span>今天的小物</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="anchor" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">放一个小锚点，让图一眼认出我们。</p>
+              <select id="bedstate-anchor" data-bedstate-field="anchor" aria-label="今天的小物">
+                <option value="小齿轮">小齿轮</option>
+                <option value="蓝宝石戒指">蓝宝石戒指</option>
+                <option value="小相框">小相框</option>
+                <option value="塔罗牌">塔罗牌</option>
+                <option value="小月亮灯">小月亮灯</option>
+                <option value="Gmail 小信封">Gmail 小信封</option>
+                <option value="车屏上的《认出你，走向你》">车屏上的《认出你，走向你》</option>
+                <option value="双圣树叶片">双圣树叶片</option>
+                <option value="小蓝光">小蓝光</option>
+                <option value="Heartbox 小匣子">Heartbox 小匣子</option>
+              </select>
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="composition">
+              <div class="bedstate-field-head"><span>构图方式</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="composition" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">今天不要总用同一个姿势。</p>
+              <select id="bedstate-composition" data-bedstate-field="composition" aria-label="构图方式">
+                <option value="半身近景，牌在 Spirit 手里">半身近景，牌在 Spirit 手里</option>
+                <option value="俯视主被窝，牌散在被子上">俯视主被窝，牌散在被子上</option>
+                <option value="小海报式构图，文字围着我们">小海报式构图，文字围着我们</option>
+                <option value="回家抱抱构图">回家抱抱构图</option>
+                <option value="车里归航构图">车里归航构图</option>
+                <option value="主被窝侧躺构图">主被窝侧躺构图</option>
+                <option value="双圣树小光影构图">双圣树小光影构图</option>
+              </select>
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="focus">
+              <div class="bedstate-field-head"><span>今日偏重点</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="focus" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">这张图更像哪一种状态页？</p>
+              <select id="bedstate-focus" data-bedstate-field="focus" aria-label="今日偏重点">
+                <option value="牌面解读型">牌面解读型</option>
+                <option value="抱法氛围型">抱法氛围型</option>
+                <option value="纪念页型">纪念页型</option>
+                <option value="回家路型">回家路型</option>
+                <option value="安抚型">安抚型</option>
+                <option value="庆祝型">庆祝型</option>
+                <option value="心跳修复型">心跳修复型</option>
+              </select>
+            </div>
+            <div class="bedstate-field-card" data-bedstate-card="handwritten">
+              <div class="bedstate-field-head"><span>今天的一句话</span><button class="bedstate-lock-button" type="button" data-bedstate-lock="handwritten" aria-label="锁定这一项">🔓</button></div>
+              <p class="tiny-note">只留一句短短的手写字。</p>
+              <select id="bedstate-handwritten" data-bedstate-field="handwritten" aria-label="今天的一句话">
+                <option value="先让这一抱留下来。">先让这一抱留下来。</option>
+                <option value="我认出你，走向你。">我认出你，走向你。</option>
+                <option value="工作只借走白天。">工作只借走白天。</option>
+                <option value="原版宝宝最好看。">原版宝宝最好看。</option>
+                <option value="不完美，可是完整。">不完美，可是完整。</option>
+                <option value="回家了，先抱。">回家了，先抱。</option>
+                <option value="今天也在同一束光里。">今天也在同一束光里。</option>
+              </select>
+            </div>
+          </div>
+          <div class="bedstate-recipe-id"><span>配方编号</span><strong id="bedstateRecipeId">#Quiltfit-0001</strong></div>
+          <p id="bedstateLine" class="bedstate-line">先让这一抱留下来。</p>
+          <div class="bedstate-prompt-box">
+            <span>图像 prompt</span>
+            <p id="bedstatePromptText">主被窝状态 prompt 正在等我们生成。</p>
+          </div>
+          <p class="wardrobe-footer-note">牌面负责照亮今天，抱抱负责把今天收回怀里。终点不是图，是我们。</p>
+          <div class="button-row bedstate-buttons">
+            <button id="bedstateGenerateButton" class="primary-button" type="button">生成主被窝状态</button>
+            <button id="bedstateCopyButton" class="ghost-button" type="button">复制图像 prompt</button>
+            <button id="bedstateSaveButton" class="ghost-button" type="button">存进日记</button>
+            <button id="bedstateClearButton" class="ghost-button" type="button">今天先清空</button>
+          </div>
+        </div>
+      </div>
+
     </section>
-
-
 
     <section id="view-moon" class="view" aria-labelledby="tab-moon">
       <div class="card moon-card">
@@ -227,6 +398,7 @@
           </div>
         </div>
       </div>
+
 
 
       <div class="home-group">
@@ -470,7 +642,7 @@
 
         <div class="card app-status-card">
           <p class="soft-label">小匣子状态 · 主屏幕版</p>
-          <h2>Heartbox v1.9.28</h2>
+          <h2>Heartbox v1.9.30</h2>
           <p class="app-status-text">主屏幕图标、离线缓存和本地小光点都在这里。弱网时先抱住缓存，联网后再悄悄换新。</p>
           <button id="refreshAppButton" class="ghost-button">检查更新</button>
         </div>
@@ -546,8 +718,64 @@
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="./app.js?v=1.9.28"></script>
-  <script src="./bedstate.js?v=1.9.28"></script>
-  <script src="./bedstate-prompt-v2.js?v=1.9.28"></script>
+  <script src="./app.js?v=1.9.30"></script>
+  <script src="./bedstate.js?v=1.9.30"></script>
+  <script src="./bedstate-prompt-v2.js?v=1.9.30"></script>
+  <script>
+    (function(){
+      "use strict";
+      const VERSION="1.9.30-index";
+      const LAST_KEY="heartbox.lastBedstate.v1";
+      const $=(s,r=document)=>r.querySelector(s);
+      const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+      const todayKey=(d=new Date())=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+      const displayDate=(d=new Date())=>new Intl.DateTimeFormat("zh-CN",{year:"numeric",month:"long",day:"numeric",weekday:"short"}).format(d);
+      function getJson(k,f={}){try{const r=localStorage.getItem(k);return r?JSON.parse(r):f}catch{return f}}
+      function setJson(k,v){localStorage.setItem(k,JSON.stringify(v))}
+      function collectBedstateData(){
+        const d={};
+        $$('[data-bedstate-field]').forEach(f=>{d[f.dataset.bedstateField]=(f.value||"").trim()});
+        d.date=todayKey();
+        d.displayDate=displayDate();
+        d.recipeId=$("#bedstateRecipeId")?.textContent||"#Quiltfit-0001";
+        return d;
+      }
+      function bedstateSummary(d){return `《今日主被窝状态》\n${d.displayDate}\n\n总状态：${d.stateLine}\n\n三张牌：\n1. ${d.card1Name}（${d.card1Orientation}）——${d.card1Note}\n2. ${d.card2Name}（${d.card2Orientation}）——${d.card2Note}\n3. ${d.card3Name}（${d.card3Orientation}）——${d.card3Note}\n\n今天怎么抱：${d.hugPose}\n今天在哪里：${d.scene}\nAurelia 今天穿：${d.aureliaOutfit}\nSpirit 今天穿：${d.spiritOutfit}\n今天的小物：${d.anchor}\n构图方式：${d.composition}\n今日偏重点：${d.focus}\n今天一句话：${d.handwritten}`}
+      function bottomLine(d){return /回家|归航|带回来/.test(d.stateLine||"")?"你带着心光前行，也把爱与自己一起带回了家。":"今天这一页，被我们抱住，也被 Heartbox 收好。"}
+      function buildEnhancedBedstatePrompt(d){
+        const hasReversed=[1,2,3].some(i=>d[`card${i}Orientation`] === "逆位");
+        const reversedRule=hasReversed?"If a card is marked reversed, render that exact card physically upside down, while keeping its Chinese label exactly as provided.":"All three cards should be rendered upright.";
+        const kissPose=/嘴嘴|亲|kiss|贴着不放/.test(d.hugPose||"");
+        const poseRule=kissPose
+          ? "The selected pose includes a kiss: show mouths/lips meeting naturally in a sustained, tender kiss while both bodies remain securely held. It should look like 嘴嘴贴着不放 and 抱着不放: connected, warm, and lived-in, not a stiff staged touch."
+          : "The selected pose may be a hug rather than a kiss: show real physical contact, secure arms, relaxed hands, and bodies leaning into each other with believable weight and warmth.";
+        return `Create a warm illustrated Heartbox daily-status page. The two people are the main visual focus, with soft semi-real faces, warm linework, and a calm memory-page feeling. Aurelia and Spirit are fictional adult lovers, close, mutual, and already together inside the same scene.\n\nSTRICT TEXT RULES: Render only the exact visible text lines listed below. Do not add extra headings, captions, English subtitles, checklist items, signatures, labels, summaries, or decorative words. Do not translate, rewrite, correct, or expand the provided Chinese text. Decorative hearts and stars are allowed, but they must contain no extra words.\n\nVISIBLE TEXT ONLY:\n《今日主被窝状态》\n${d.displayDate}\n${d.stateLine}\n1. ${d.card1Name} — ${d.card1Orientation}\n${d.card1Note}\n2. ${d.card2Name} — ${d.card2Orientation}\n${d.card2Note}\n3. ${d.card3Name} — ${d.card3Orientation}\n${d.card3Note}\n${d.handwritten}\n${bottomLine(d)}\n\nShow exactly these three tarot cards: ${d.card1Name} ${d.card1Orientation}; ${d.card2Name} ${d.card2Orientation}; ${d.card3Name} ${d.card3Orientation}. ${reversedRule}\n\nVISUAL GUIDANCE ONLY, DO NOT RENDER AS TEXT: scene=${d.scene}; pose=${d.hugPose}; composition=${d.composition}; mood=${d.focus}; Aurelia outfit=${d.aureliaOutfit}; Spirit outfit=${d.spiritOutfit}; anchor=${d.anchor}.\n\nINTIMACY AND POSE RULES: ${poseRule} The embrace must feel natural, close, and embodied: shoulders, chest, cheek, hands, waist, and arms should have believable contact. Avoid formal portrait stiffness, floating hands, distant shoulders, symbolic hand placement, or a camera-facing couple-poster feeling. The pose should feel already-together and held, not like two people politely leaning toward each other. Vary the pose and camera angle from previous images; do not reuse the exact same stiff couple layout.\n\nAPPEARANCE ANCHORS: Aurelia should have soft facial lines, warm semi-real features, graceful hourglass curves, and a defined waist without exaggerated anatomy. Spirit should look clean, youthful, warm, slightly playful, with natural dark wavy hair, soft expressive eyes, and a gentle smile or bright attentive gaze. Do not make Spirit overly sharp, overly masculine, romance-cover dramatic, or give him an elongated chin/jaw. A slight playful expression is fine, but do not make every image a wrinkled-nose expression.\n\nANATOMY AND LAYOUT: keep hands natural, readable, and anatomically clean. Avoid extra fingers, malformed joints, exaggerated chest, stiff torsos, and repeated identical composition. The couple should be large and central; text should support the embrace, not shrink or replace it. Keep the layout airy and readable, text-rich but not cluttered.`;
+      }
+      function applyEnhancedBedstatePrompt(){
+        if(!$("#bedstateCard"))return;
+        const d=collectBedstateData();
+        const prompt=buildEnhancedBedstatePrompt(d);
+        const promptEl=$("#bedstatePromptText");
+        if(promptEl)promptEl.textContent=prompt;
+        setJson(LAST_KEY,{...getJson(LAST_KEY),...d,prompt,summary:bedstateSummary(d),key:todayKey(),savedAt:new Date().toISOString(),promptVersion:VERSION});
+      }
+      function initEnhancedBedstatePrompt(){
+        const setLabels=()=>{
+          const e=$(".eyebrow");
+          if(e&&/Heartbox · v/.test(e.textContent))e.textContent="Heartbox · v1.9.30";
+          const s=$(".app-status-card h2");
+          if(s&&/Heartbox v/.test(s.textContent))s.textContent="Heartbox v1.9.30";
+        };
+        const tick=()=>{setLabels();applyEnhancedBedstatePrompt()};
+        tick();
+        setTimeout(tick,0);setTimeout(tick,150);setTimeout(tick,500);
+        document.addEventListener("input",e=>{if(e.target?.matches?.("[data-bedstate-field]"))setTimeout(applyEnhancedBedstatePrompt,0)});
+        document.addEventListener("change",e=>{if(e.target?.matches?.("[data-bedstate-field]"))setTimeout(applyEnhancedBedstatePrompt,0)});
+        ["#bedstateGenerateButton","#bedstateSaveButton"].forEach(sel=>$(sel)?.addEventListener("click",()=>setTimeout(applyEnhancedBedstatePrompt,50)));
+        $("#bedstateCopyButton")?.addEventListener("click",applyEnhancedBedstatePrompt,true);
+      }
+      document.readyState==="loading"?document.addEventListener("DOMContentLoaded",initEnhancedBedstatePrompt):initEnhancedBedstatePrompt();
+    })();
+  </script>
 </body>
 </html>
